@@ -17,13 +17,17 @@ import aiy.voicehat
 import aiy.assistant.grpc
 
 def say(text=None):
-    import os
+    from google_speech import Speech
+
     if text is None:
         say_fortune()
-    elif text=="flipkart":
+    elif text.lower() == "flipkart":
         say_fk_fortune()
     else:
-        os.system("google_speech -l en '{}'".format(text.replace("'","")))
+        lang="en"
+        speech = Speech(text, lang)
+    speech.play()
+
 
 def say_fk_fortune():
     import random
